@@ -29,35 +29,79 @@
         </div>
     </div>
 
-    <div id="bank-account" class="container hidden">
-        <div class="bank-header">
-            <h2>夢銀行口座</h2>
-        </div>
+    <div id="bank-account" class="bank-container hidden">
+        <header class="bank-nav">
+            <div class="bank-logo">
+                <h1>みらい銀行</h1>
+                <span class="bank-tagline">Your Future, Our Commitment</span>
+            </div>
+            <nav class="bank-menu">
+                <a href="#" class="menu-item">ホーム</a>
+                <a href="#" class="menu-item active">口座情報</a>
+                <a href="#" class="menu-item">振込・振替</a>
+                <a href="#" class="menu-item">各種サービス</a>
+                <a href="#" class="menu-item">ログアウト</a>
+            </nav>
+        </header>
         
-        <div class="account-info">
-            <div class="account-detail">
-                <span>口座番号：</span>
-                <span>DREAM-001-234567</span>
+        <main class="bank-main">
+            <div class="welcome-message">
+                <h2>ようこそ、夢野 太郎 様</h2>
+                <p>最終ログイン: <span id="last-login"></span></p>
             </div>
             
-            <div class="balance-section">
-                <h3>残高</h3>
-                <div class="balance" id="balance">¥0</div>
+            <div class="account-card">
+                <h3>普通預金口座</h3>
+                <div class="account-details">
+                    <div class="detail-row">
+                        <span class="label">口座番号</span>
+                        <span class="value">1234567</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">支店名</span>
+                        <span class="value">東京中央支店</span>
+                    </div>
+                </div>
+                
+                <div class="balance-display">
+                    <span class="balance-label">現在の残高</span>
+                    <div class="balance-amount" id="balance">¥0</div>
+                </div>
             </div>
             
-            <div class="transaction-section">
-                <h3>取引明細</h3>
-                <table class="transaction-table">
+            <div class="transaction-card">
+                <h3>最近の取引履歴</h3>
+                <table class="clean-transaction-table">
                     <thead>
                         <tr>
-                            <th>日付</th>
-                            <th>内容</th>
-                            <th>金額</th>
+                            <th>取引日</th>
+                            <th>摘要</th>
+                            <th>お引出し</th>
+                            <th>お預入れ</th>
+                            <th>残高</th>
                         </tr>
                     </thead>
                     <tbody id="transaction-list">
                     </tbody>
                 </table>
+            </div>
+        </main>
+        
+        <footer class="bank-footer">
+            <p>© 2024 みらい銀行 All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>お知らせ</h2>
+            </div>
+            <div class="modal-body">
+                <p class="modal-message">夢をかなえました・・・</p>
+            </div>
+            <div class="modal-footer">
+                <button id="modal-close" class="modal-btn">確認</button>
             </div>
         </div>
     </div>

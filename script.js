@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const bankAccount = document.getElementById('bank-account');
     const balanceDisplay = document.getElementById('balance');
     const transactionList = document.getElementById('transaction-list');
+    const lastLoginSpan = document.getElementById('last-login');
+    const modal = document.getElementById('modal');
+    const modalCloseBtn = document.getElementById('modal-close');
 
     dreamButton.addEventListener('click', () => {
         const amount = parseInt(amountInput.value) || 0;
@@ -21,26 +24,35 @@ document.addEventListener('DOMContentLoaded', () => {
         balanceDisplay.textContent = `¥${formattedAmount}`;
 
         const today = new Date();
-        const dateStr = `${today.getFullYear()}/${(today.getMonth() + 1).toString().padStart(2, '0')}/${today.getDate().toString().padStart(2, '0')}`;
-
-        const transactions = [
-            { date: dateStr, description: '夢の入金', amount: `+¥${formattedAmount}` }
-        ];
+        const dateStr = `${today.getFullYear()}年${(today.getMonth() + 1)}月${today.getDate()}日`;
+        const timeStr = `${today.getHours().toString().padStart(2, '0')}:${today.getMinutes().toString().padStart(2, '0')}`;
+        
+        lastLoginSpan.textContent = `${dateStr} ${timeStr}`;
 
         transactionList.innerHTML = '';
-        transactions.forEach(transaction => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${transaction.date}</td>
-                <td>${transaction.description}</td>
-                <td style="color: #06ffa5;">${transaction.amount}</td>
-            `;
-            transactionList.appendChild(row);
-        });
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${dateStr}</td>
+            <td>振込入金</td>
+            <td>-</td>
+            <td>¥${formattedAmount}</td>
+            <td>¥${formattedAmount}</td>
+        `;
+        transactionList.appendChild(row);
 
         setTimeout(() => {
-            alert('夢をかなえました・・・');
-        }, 1500);
+            modal.classList.remove('hidden');
+        }, 5000);
+    });
+
+    modalCloseBtn.addEventListener('click', () => {
+        modal.classList.add('hidden');
+    });
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.add('hidden');
+        }
     });
 
     amountInput.addEventListener('keypress', (e) => {
